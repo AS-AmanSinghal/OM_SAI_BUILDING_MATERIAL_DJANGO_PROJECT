@@ -1,0 +1,124 @@
+{% extends 'adminhtml/includes/main.html' %}
+{% load static %}
+{% block headBlock %}
+<link href="{% static 'admin/css/users/style.css' %}" rel="stylesheet">
+<!-- DataTables -->
+<link href="{% static 'admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+<link href="{% static 'admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+<link href="{% static 'admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block mainBlock %}
+<div class="container-fluid">
+    {% include 'adminhtml/includes/alert.html' %}
+    <div class="row">
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">{{ title }}</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form action="{{ request.path }}" enctype="multipart/form-data" method="post">
+                    {% csrf_token %}
+                    <div class="card-body">
+                        <div class="form-group">
+                            {{ forms.as_p }}
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+
+                    <div class="card-footer">
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.card -->
+        </div>
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-bordered table-hover" id="example2">
+                        <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Category</th>
+                            <th>Sub Category</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% if sub_category_data.count %}
+                        {% for sub_category in sub_category_data %}
+                        <tr>
+                            <td>
+                                <a href="{{ sub_category.image.url }}" target="_blank">
+                                    <img alt="{{ sub_category.image.name }}" class="profile-pic"
+                                         src="{{ sub_category.image.url }}" style="width:80px">
+                                </a>
+                            </td>
+                            <td>{{ sub_category.category.name }}</td>
+                            <td>{{ sub_category.name }}</td>
+                            {% if sub_category.status %}
+                            <td><a href="{% url 'sub_category_status' id=sub_category.id %}"
+                                   style="color: green" title="Click for InActive">Active</a></td>
+                            {% else %}
+                            <td><a href="{% url 'sub_category_status' id=sub_category.id %}"
+                                   style="color: red" title="Click for Active">InActive</a></td>
+                            {% endif %}
+                            <td>
+                                <a href="{% url 'sub_category_edit' id=sub_category.id %}">
+                                    <button class="btn btn-success" title="Edit" type="button"><i
+                                            class="fas fa-edit"></i></button>
+                                </a>
+                                <a href="{% url 'sub_category_delete' id=sub_category.id %}">
+                                    <button class="btn btn-danger" title="Delete" type="button"><i
+                                            class="far fa-trash-alt"></i></button>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {% else %}
+                        <tr>
+                            <td>No record found(s)</td>
+                        </tr>
+                        {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container-fluid -->
+{% endblock %}
+
+
+{% block footerBlock %}
+<!-- DataTables  & Plugins -->
+<script src="{% static 'admin/plugins/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'admin/plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+<script src="{% static 'admin/plugins/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'admin/plugins/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+<script>
+        $(function () {
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+
+</script>
+{% endblock %}

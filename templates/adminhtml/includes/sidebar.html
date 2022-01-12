@@ -92,6 +92,41 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-header">Product Management</li>
+                <li class="nav-item {% if '/category/' in request.path or '/product/' in request.path  %}menu-open{% endif %}">
+                    <a class="nav-link {% if '/category/' in request.path or '/product/' in request.path %}active{% endif %}"
+                       href="#">
+                        <i class="nav-icon fab fa-product-hunt"></i>
+                        <p>
+                            Product Management
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a class="nav-link {% if '/category/add/' in request.path  %}active{% endif %}"
+                               href="{% url 'category_add' %}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Category</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if '/category/subcategory/add/' in request.path  %}active{% endif %}"
+                               href="{% url 'sub_category_add' %}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Sub Category</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if '/brand/add/' in request.path  %}active{% endif %}"
+                               href="{% url 'brand_add' %}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Brand</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'logout' %}">
                         <i class="nav-icon fas fa-sign-out-alt"></i>
