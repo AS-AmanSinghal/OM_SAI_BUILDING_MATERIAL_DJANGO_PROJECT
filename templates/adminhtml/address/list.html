@@ -1,0 +1,98 @@
+{% extends 'adminhtml/includes/main.html' %}
+{% load static %}
+{% block headBlock %}
+<!-- DataTables -->
+<link href="{% static 'admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+<link href="{% static 'admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+<link href="{% static 'admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block mainBlock %}
+<div class="container-fluid">
+    {% include 'adminhtml/includes/alert.html' %}
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-bordered table-hover" id="example2">
+                        <thead>
+                        <tr>
+                            <th>Connected User</th>
+                            <th>Name</th>
+                            <th>Mobile Number</th>
+                            <th>Address 1</th>
+                            <th>State</th>
+                            <th>City</th>
+                            <th>Pincode</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% if address_data.count %}
+                        {% for address in address_data %}
+                        <tr>
+                            <td>{{ address.user.name }}</td>
+                            <td>{{ address.name }}</td>
+                            <td>{{ address.mobile }}</td>
+                            <td>{{ address.address1 }}</td>
+                            <td>{{ address.state }}</td>
+                            <td>{{ address.city }}</td>
+                            <td>{{ address.pincode }}</td>
+                            {% if address.status %}
+                            <td><a href="{% url 'address_status' id=address.id %}"
+                                   style="color: green" title="Click for InActive">Active</a></td>
+                            {% else %}
+                            <td><a href="{% url 'address_status' id=address.id %}"
+                                   style="color: red" title="Click for Active">InActive</a></td>
+                            {% endif %}
+                            <td>
+                                <a href="{% url 'address_delete' id=address.id %}">
+                                    <button class="btn btn-danger" title="Delete" type="button"><i
+                                            class="far fa-trash-alt"></i></button>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {% else %}
+                        <tr>
+                            <td>No record found(s)</td>
+                        </tr>
+                        {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container-fluid -->
+{% endblock %}
+
+
+{% block footerBlock %}
+<!-- DataTables  & Plugins -->
+<script src="{% static 'admin/plugins/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'admin/plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+<script src="{% static 'admin/plugins/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'admin/plugins/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+<script>
+        $(function () {
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+
+</script>
+{% endblock %}

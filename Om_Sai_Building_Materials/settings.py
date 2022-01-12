@@ -35,7 +35,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'users'
+    'users',
+    'address'
 ]
 
 MIDDLEWARE = [
@@ -121,5 +122,13 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
+
+# EMAIL CONFIGURATION
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'amansinghal436@gmail.com'
+EMAIL_HOST_PASSWORD = 'amansin892345'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
