@@ -1,0 +1,29 @@
+{% extends 'adminhtml/includes/main.html' %}
+{% block mainBlock %}
+<div class="col-md-12">
+    <!-- general form elements -->
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">{{ title }}</h3>
+        </div>
+        {% include 'adminhtml/includes/alert.html' %}
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form action="{{ request.path }}" enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+            <div class="card-body">
+                <div class="form-group">
+                    {{ forms.as_p }}
+                    {{ formset.as_p }}
+                </div>
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    <!-- /.card -->
+</div>
+{% endblock %}
