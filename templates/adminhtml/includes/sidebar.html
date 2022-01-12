@@ -59,6 +59,47 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-header">Shipping Management</li>
+                <li class="nav-item {% if '/address/' in request.path  %}menu-open{% endif %}">
+                    <a class="nav-link {% if '/address/' in request.path  %}active{% endif %}" href="#">
+                        <i class="nav-icon fas fa-shipping-fast"></i>
+                        <p>
+                            Shipping Management
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a class="nav-link {% if '/address/list/' in request.path  %}active{% endif %}"
+                               href="{% url 'address_list' %}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Address List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if '/shipping/charge/add/' in request.path  %}active{% endif %}"
+                               href="{% url 'shipping_charge_add' %}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add Charges</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if '/shipping/charge/list/' in request.path  %}active{% endif %}"
+                               href="{% url 'shipping_charge_list' %}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Charges List</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
+                        <p>
+                            Log Out
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
