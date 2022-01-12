@@ -61,7 +61,6 @@ def login(request):
                     msg = EmailMultiAlternatives(subject=subject, to=[user.email])
                     msg.attach_alternative(html_body, 'text/html')
                     msg.send()
-                    messages.success(request, "Email has been send successfully.")
                 except Exception as e:
                     messages.error(request, e)
                 return redirect('home')
