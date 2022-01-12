@@ -19,6 +19,95 @@
                     class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
+    <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-info">
+            <div class="inner">
+                <h3>{{ address_count }}</h3>
+
+                <p>Address</p>
+            </div>
+            <div class="icon">
+                <i class="fa fa-address-book"></i>
+            </div>
+            <a class="small-box-footer" href="{% url 'address_list' %}">More info <i
+                    class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-yellow">
+            <div class="inner">
+                <h3>{{ shipping_count }}</h3>
+
+                <p>Shipping Charges</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-shipping-fast"></i>
+            </div>
+            <a class="small-box-footer" href="{% url 'shipping_charge_list' %}">More info <i
+                    class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-blue">
+            <div class="inner">
+                <h3>{{ category_count }}</h3>
+
+                <p>Categories</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-list"></i>
+            </div>
+            <a class="small-box-footer" href="{% url 'category_add' %}">More info <i
+                    class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-gradient-lime">
+            <div class="inner">
+                <h3>{{ sub_category_count }}</h3>
+
+                <p>Sub Categories</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-list-alt"></i>
+            </div>
+            <a class="small-box-footer" href="{% url 'sub_category_add' %}">More info <i
+                    class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-gradient-fuchsia">
+            <div class="inner">
+                <h3>{{ brand_count }}</h3>
+
+                <p>Brands</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-th-list"></i>
+            </div>
+            <a class="small-box-footer" href="{% url 'brand_add' %}">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-gradient-red">
+            <div class="inner">
+                <h3>{{ product_count }}</h3>
+
+                <p>Products</p>
+            </div>
+            <div class="icon">
+                <i class="fab fa-product-hunt"></i>
+            </div>
+            <a class="small-box-footer" href="{% url 'product_list' %}">More info <i
+                    class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
 </div>
 <!-- /.row -->
 {% endblock %}

@@ -7,9 +7,9 @@ from django.shortcuts import redirect, render
 from django.template.loader import render_to_string
 
 from address.models import Address, ShippingCharges
-# from category.models import Category, SubCategory, Brand
+from category.models import Category, SubCategory, Brand
 # from orders.models import Order
-# from products.models import Product
+from products.models import Product
 from users.models import Customers
 
 
@@ -18,10 +18,10 @@ def home(request):
     customer_count = Customers.objects.all().count()
     address_count = Address.objects.all().count()
     shipping_count = ShippingCharges.objects.all().count()
-    # category_count = Category.objects.all().count()
-    # sub_category_count = SubCategory.objects.all().count()
-    # brand_count = Brand.objects.all().count()
-    # product_count = Product.objects.all().count()
+    category_count = Category.objects.all().count()
+    sub_category_count = SubCategory.objects.all().count()
+    brand_count = Brand.objects.all().count()
+    product_count = Product.objects.all().count()
     # order_count = Order.objects.all().count()
 
     context = {
@@ -29,10 +29,10 @@ def home(request):
         'customer_count': customer_count,
         'address_count': address_count,
         'shipping_count': shipping_count,
-        # 'category_count': category_count,
-        # 'sub_category_count': sub_category_count,
-        # 'brand_count': brand_count,
-        # 'product_count': product_count,
+        'category_count': category_count,
+        'sub_category_count': sub_category_count,
+        'brand_count': brand_count,
+        'product_count': product_count,
         # 'order_count': order_count
     }
     return render(request, 'adminhtml/index.html', context)

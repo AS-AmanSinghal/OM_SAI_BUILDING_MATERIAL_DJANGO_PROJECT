@@ -124,7 +124,27 @@
                                 <p>Brand</p>
                             </a>
                         </li>
-
+                        <li class="nav-item">
+                            <a class="nav-link {% if '/product/list/' in request.path  %}active{% endif %}"
+                               href="{% url 'product_list' %}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Product List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if '/product/add/' in request.path  %}active{% endif %}"
+                               href="{% url 'product_add' %}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add Product</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if '/product/images/list/' in request.path  %}active{% endif %}"
+                               href="{% url 'product_images_list' %}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Product Images List</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-item">
