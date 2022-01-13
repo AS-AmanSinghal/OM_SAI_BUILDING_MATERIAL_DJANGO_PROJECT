@@ -8,7 +8,7 @@ from django.template.loader import render_to_string
 
 from address.models import Address, ShippingCharges
 from category.models import Category, SubCategory, Brand
-# from orders.models import Order
+from orders.models import Order
 from products.models import Product
 from users.models import Customers
 
@@ -22,7 +22,7 @@ def home(request):
     sub_category_count = SubCategory.objects.all().count()
     brand_count = Brand.objects.all().count()
     product_count = Product.objects.all().count()
-    # order_count = Order.objects.all().count()
+    order_count = Order.objects.all().count()
 
     context = {
         'title': 'Dashboard',
@@ -33,7 +33,7 @@ def home(request):
         'sub_category_count': sub_category_count,
         'brand_count': brand_count,
         'product_count': product_count,
-        # 'order_count': order_count
+        'order_count': order_count
     }
     return render(request, 'adminhtml/index.html', context)
 

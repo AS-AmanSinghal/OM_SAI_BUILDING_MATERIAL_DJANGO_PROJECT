@@ -147,6 +147,49 @@
                         </li>
                     </ul>
                 </li>
+                </li>
+                <li class="nav-header">Order Management</li>
+                <li class="nav-item {% if '/order/' in request.path %}menu-open{% endif %}">
+                    <a class="nav-link {% if '/order/' in request.path %}active{% endif %}" href="#">
+                        <i class="nav-icon fas fa-store"></i>
+                        <p>
+                            Order Management
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a class="nav-link {% if '/order/wishlist/' in request.path  %}active{% endif %}"
+                               href="{% url 'wishlist' %}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Customer Wishlist</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if '/cart/list/' in request.path  %}active{% endif %}"
+                               href="{% url 'cart_list' %}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Customer Cart</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if '/order/list/' in request.path  %}active{% endif %}"
+                               href="{% url 'order_list' %}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Orders</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pages/widgets.html">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Widgets
+                            <span class="right badge badge-danger">New</span>
+                        </p>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'logout' %}">
                         <i class="nav-icon fas fa-sign-out-alt"></i>
