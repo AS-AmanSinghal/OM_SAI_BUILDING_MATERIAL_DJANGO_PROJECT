@@ -1,5 +1,10 @@
 import os.path
+import sys
+import uuid
+from io import BytesIO
 
+from PIL import Image
+from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.db import models
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
@@ -35,6 +40,20 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+    def save(self, **kwargs):
+        # opening Image
+        im = Image.open(self.image)
+        output = BytesIO()
+        # resize the modify
+        im = im.resize((720, 360))
+        # after modification save it to the output
+        im.save(output, format='JPEG', quality=90)
+        output.seek(0)
+        # change imagefield value to the newly modified image value
+        self.image = InMemoryUploadedFile(output, 'ImageField', "%s.jpg" % uuid.uuid4(), 'image/jpeg',
+                                          sys.getsizeof(output), None)
+        super(Product, self).save()
+
     @receiver(pre_save)
     def before_save_model(sender, instance, **kwargs):
         try:
@@ -59,6 +78,20 @@ class Images(models.Model):
     image = models.ImageField(upload_to=get_upload_path)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def save(self, **kwargs):
+        # opening Image
+        im = Image.open(self.image)
+        output = BytesIO()
+        # resize the modify
+        im = im.resize((720, 360))
+        # after modification save it to the output
+        im.save(output, format='JPEG', quality=90)
+        output.seek(0)
+        # change imagefield value to the newly modified image value
+        self.image = InMemoryUploadedFile(output, 'ImageField', "%s.jpg" % uuid.uuid4(), 'image/jpeg',
+                                          sys.getsizeof(output), None)
+        super(Images, self).save()
 
     def __str__(self):
         return f'{self.product.name}'
