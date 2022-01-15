@@ -37,8 +37,8 @@ def product_status(request, id):
             messages.success(request, "Product status has been updated successfully.")
         else:
             messages.error(request, "Product stock is less than or equals to zero.")
-    except:
-        messages.error(request, "Something went wrong. Try again.")
+    except Exception as e:
+        messages.error(request, e)
     return redirect('product_list')
 
 
@@ -77,8 +77,8 @@ def product_delete(request, id):
         product_data = get_object_or_404(Product, id=id)
         product_data.delete()
         messages.success(request, "Product has been deleted successfully.")
-    except:
-        messages.success(request, "Something went wrong. Try Again.")
+    except Exception as e:
+        messages.success(request, e)
     return redirect('product_list')
 
 

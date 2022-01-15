@@ -62,7 +62,7 @@ class Product(models.Model):
             else:
                 instance.status = False
             instance.discount = ((instance.mrp - instance.price) / instance.mrp) * 100
-        except:
+        except Exception as e:
             pass
 
     class Meta:
