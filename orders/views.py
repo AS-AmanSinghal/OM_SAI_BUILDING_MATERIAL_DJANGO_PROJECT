@@ -27,8 +27,8 @@ def wishlist_delete(request, id):
         wishlist = get_object_or_404(Wishlist, id=id)
         wishlist.delete()
         messages.success(request, 'Wishlist has been deleted successfully.')
-    except:
-        messages.error(request, "Something went wrong.Try Again.")
+    except Exception as e:
+        messages.error(request, e)
     return redirect('wishlist')
 
 
