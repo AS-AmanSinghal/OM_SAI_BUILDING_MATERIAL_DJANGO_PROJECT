@@ -1,3 +1,9 @@
+import sys
+import uuid
+from io import BytesIO
+
+from PIL import Image
+from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.db import models
 
 
@@ -14,6 +20,20 @@ class Category(models.Model):
     status = models.BooleanField(choices=STATUS, default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def save(self, **kwargs):
+        # opening Image
+        im = Image.open(self.image)
+        output = BytesIO()
+        # resize the modify
+        im = im.resize((720, 360))
+        # after modification save it to the output
+        im.save(output, format='JPEG', quality=90)
+        output.seek(0)
+        # change imagefield value to the newly modified image value
+        self.image = InMemoryUploadedFile(output, 'ImageField', "%s.jpg" % uuid.uuid4(), 'image/jpeg',
+                                          sys.getsizeof(output), None)
+        super(Category, self).save()
 
     def __str__(self):
         return self.name
@@ -35,6 +55,20 @@ class SubCategory(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def save(self, **kwargs):
+        # opening Image
+        im = Image.open(self.image)
+        output = BytesIO()
+        # resize the modify
+        im = im.resize((720, 360))
+        # after modification save it to the output
+        im.save(output, format='JPEG', quality=90)
+        output.seek(0)
+        # change imagefield value to the newly modified image value
+        self.image = InMemoryUploadedFile(output, 'ImageField', "%s.jpg" % uuid.uuid4(), 'image/jpeg',
+                                          sys.getsizeof(output), None)
+        super(SubCategory, self).save()
+
     def __str__(self):
         return self.name
 
@@ -54,6 +88,20 @@ class Brand(models.Model):
     status = models.BooleanField(choices=STATUS, default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def save(self, **kwargs):
+        # opening Image
+        im = Image.open(self.image)
+        output = BytesIO()
+        # resize the modify
+        im = im.resize((720, 360))
+        # after modification save it to the output
+        im.save(output, format='JPEG', quality=90)
+        output.seek(0)
+        # change imagefield value to the newly modified image value
+        self.image = InMemoryUploadedFile(output, 'ImageField', "%s.jpg" % uuid.uuid4(), 'image/jpeg',
+                                          sys.getsizeof(output), None)
+        super(Brand, self).save()
 
     def __str__(self):
         return self.brand_name
