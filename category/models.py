@@ -11,13 +11,10 @@ from django.db import models
 
 
 class Category(models.Model):
-    STATUS = [
-        (True, 'Active'),
-        (False, 'InActive')
-    ]
+
     image = models.ImageField(upload_to='product/category')
     name = models.CharField(max_length=15, unique=True, null=False, blank=False)
-    status = models.BooleanField(choices=STATUS, default=False)
+    status = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -44,14 +41,11 @@ class Category(models.Model):
 
 
 class SubCategory(models.Model):
-    STATUS = [
-        (True, 'Active'),
-        (False, 'InActive')
-    ]
+
     image = models.ImageField(upload_to='product/sub_category')
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     name = models.CharField(max_length=15, unique=True, null=False, blank=False)
-    status = models.BooleanField(choices=STATUS, default=False)
+    status = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -78,14 +72,10 @@ class SubCategory(models.Model):
 
 
 class Brand(models.Model):
-    STATUS = [
-        (True, 'Active'),
-        (False, 'InActive')
-    ]
     image = models.ImageField(upload_to='product/sub_category')
     sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
     brand_name = models.CharField(max_length=15, null=False, blank=False)
-    status = models.BooleanField(choices=STATUS, default=False)
+    status = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

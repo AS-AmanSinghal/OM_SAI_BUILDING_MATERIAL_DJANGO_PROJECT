@@ -43,8 +43,8 @@ def category_status(request, id):
             category_data.status = True
         category_data.save()
         messages.success(request, "Category status has been updated successfully.")
-    except:
-        messages.success(request, "Something went wrong. Try Again.")
+    except Exception as e:
+        messages.success(request, e)
     return redirect('category_add')
 
 
@@ -54,8 +54,8 @@ def category_delete(request, id):
         category_data = get_object_or_404(Category, id=id)
         category_data.delete()
         messages.success(request, "Category has been deleted successfully.")
-    except:
-        messages.success(request, "Something went wrong. Try Again.")
+    except Exception as e:
+        messages.success(request, e)
     return redirect('category_add')
 
 
@@ -119,8 +119,8 @@ def sub_category_status(request, id):
             sub_category_data.status = True
         sub_category_data.save()
         messages.success(request, "Sub category status has been updated successfully.")
-    except:
-        messages.success(request, "Something went wrong. Try Again.")
+    except Exception as e:
+        messages.success(request, e)
     return redirect('sub_category_add')
 
 
@@ -130,8 +130,8 @@ def sub_category_delete(request, id):
         sub_category_data = get_object_or_404(SubCategory, id=id)
         sub_category_data.delete()
         messages.success(request, "Sub category has been deleted successfully.")
-    except:
-        messages.success(request, "Something went wrong. Try Again.")
+    except Exception as e:
+        messages.success(request, e)
     return redirect('sub_category_add')
 
 
@@ -195,8 +195,8 @@ def brand_status(request, id):
             brand_data.status = True
         brand_data.save()
         messages.success(request, "Brand status has been updated successfully.")
-    except:
-        messages.success(request, "Something went wrong. Try Again.")
+    except Exception as e:
+        messages.success(request, e)
     return redirect('brand_add')
 
 
@@ -206,8 +206,8 @@ def brand_delete(request, id):
         brand_data = get_object_or_404(Brand, id=id)
         brand_data.delete()
         messages.success(request, "Brand has been deleted successfully.")
-    except:
-        messages.success(request, "Something went wrong. Try Again.")
+    except Exception as e:
+        messages.success(request, e)
     return redirect('brand_add')
 
 
