@@ -39,7 +39,7 @@ class Cart(models.Model):
                 super(Cart, data).save(*args, **kwargs)
             else:
                 super(Cart, self).save(*args, **kwargs)
-        except:
+        except Exception as e:
             super(Cart, self).save(*args, **kwargs)
 
     class Meta:
@@ -77,9 +77,10 @@ class OrderItem(models.Model):
         ('Delivered', 'Delivered'),
     ]
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
-    product_name = models.CharField(max_length=50, null=False, blank=False)
+    product_image = models.URLField(blank=True)
+    product_name = models.CharField(max_length=50, blank=False)
     price = models.PositiveIntegerField()
-    discount = models.DecimalField(decimal_places=2, max_digits=10000)
+    discount = models.DecimalField(decimal_places=2)
     quantity = models.PositiveIntegerField()
     status = models.CharField(max_length=20, choices=STATUS, default='Pending')
     created_at = models.DateTimeField(auto_now_add=True)

@@ -29,8 +29,8 @@ def customer_status(request, id):
             customer_data.is_active = True
         customer_data.save()
         messages.success(request, "Customer status has been changed successfully.")
-    except:
-        messages.error(request, "Something Went Wrong.Try Again.")
+    except Exception as e:
+        messages.error(request, e)
     return redirect('customer_list')
 
 
@@ -40,8 +40,8 @@ def customer_delete(request, id):
         customer_data = get_object_or_404(Customers, id=id)
         customer_data.delete()
         messages.success(request, "Customer has been deleted successfully.")
-    except:
-        messages.error(request, "Something went wrong.Try Again.")
+    except Exception as e:
+        messages.error(request, e)
     return redirect('customer_list')
 
 

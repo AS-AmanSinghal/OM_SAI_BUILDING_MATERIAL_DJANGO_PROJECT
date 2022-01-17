@@ -29,8 +29,8 @@ def address_status(request, id):
             address_data.status = True
         address_data.save()
         messages.success(request, "Address status has been changed successfully.")
-    except:
-        messages.error(request, "Something went wrong. Try Again")
+    except Exception as e:
+        messages.error(request, e)
     return redirect('address_list')
 
 
@@ -40,8 +40,8 @@ def address_delete(request, id):
         address_data = get_object_or_404(Address, id=id)
         address_data.delete()
         messages.success(request, 'Address has been deleted successfully.')
-    except:
-        messages.error(request, 'Something went wrong.Try Again.')
+    except Exception as e:
+        messages.error(request, e)
     return redirect('address_list')
 
 
@@ -65,8 +65,8 @@ def shipping_charge_status(request, id):
             shipping_charge_data.status = True
         shipping_charge_data.save()
         messages.success(request, "Shipping Charge status has been changed successfully.")
-    except:
-        messages.error(request, "Something went wrong. Try Again")
+    except Exception as e:
+        messages.error(request, e)
     return redirect('shipping_charge_list')
 
 
@@ -76,8 +76,8 @@ def shipping_charge_delete(request, id):
         shipping_charge_data = get_object_or_404(ShippingCharges, id=id)
         shipping_charge_data.delete()
         messages.success(request, 'Shipping charge has been deleted successfully.')
-    except:
-        messages.error(request, 'Something went wrong.Try Again.')
+    except Exception as e:
+        messages.error(request, e)
     return redirect('shipping_charge_list')
 
 
