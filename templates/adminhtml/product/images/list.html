@@ -34,11 +34,11 @@
                                 </a>
                             </td>
                             <td>
-                                <a href="{% url 'product_images_edit' id=product.id %}">
+                                <a href="{% url 'product_images_edit' product_id=product.product.id id=product.id %}">
                                     <button class="btn btn-success" title="Edit" type="button"><i
                                             class="fas fa-edit"></i></button>
                                 </a>
-                                <a href="{% url 'product_images_delete' id=product.id %}">
+                                <a href="{% url 'product_images_delete' product_id=product.product.id id=product.id %}">
                                     <button class="btn btn-danger" title="Delete" type="button"><i
                                             class="far fa-trash-alt"></i></button>
                                 </a>
