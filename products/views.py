@@ -109,8 +109,8 @@ def product_edit(request, id):
 
 
 @login_required(login_url='login')
-def product_images_list(request):
-    product_images_data = Images.objects.all()
+def product_images_list(request, id):
+    product_images_data = Images.objects.filter(product__id=id)
     context = {
         'title': 'Product Images List',
         'product_images_data': product_images_data
@@ -119,7 +119,7 @@ def product_images_list(request):
 
 
 @login_required(login_url='login')
-def product_images_edit(request, id):
+def product_images_edit(request, product_id, id):
     try:
         product_image_data = get_object_or_404(Images, id=id)
         forms = UploadImagesForm(instance=product_image_data)
@@ -128,7 +128,7 @@ def product_images_edit(request, id):
             if forms.is_valid():
                 forms.save()
                 messages.success(request, "Product image has been updated successfully.")
-                return redirect('product_images_list')
+                return redirect('product_images_list', id=product_id)
             else:
                 for field in forms:
                     for error in field.errors:
@@ -140,15 +140,15 @@ def product_images_edit(request, id):
         return render(request, 'adminhtml/users/add.html', context)
     except Exception as e:
         messages.error(request, e)
-        return redirect('product_images_list')
+        return redirect('product_images_list', id=product_id)
 
 
 @login_required(login_url='login')
-def product_images_delete(request, id):
+def product_images_delete(request, product_id, id):
     try:
         product_image_data = get_object_or_404(Images, id=id)
         product_image_data.delete()
         messages.success(request, 'Product image has been deleted successfully.')
     except Exception as e:
         messages.error(request, e)
-    return redirect('product_images_list')
+    return redirect('product_images_list', id=product_id)

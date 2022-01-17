@@ -80,7 +80,7 @@ class OrderItem(models.Model):
     product_image = models.URLField(blank=True)
     product_name = models.CharField(max_length=50, blank=False)
     price = models.PositiveIntegerField()
-    discount = models.DecimalField(decimal_places=2)
+    discount = models.DecimalField(decimal_places=2, max_digits=5)
     quantity = models.PositiveIntegerField()
     status = models.CharField(max_length=20, choices=STATUS, default='Pending')
     created_at = models.DateTimeField(auto_now_add=True)
