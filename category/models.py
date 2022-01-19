@@ -84,7 +84,7 @@ class Brand(models.Model):
         im = Image.open(self.image)
         output = BytesIO()
         # resize the modify
-        im = im.resize((720, 360))
+        im = im.resize((1024, 720))
         # after modification save it to the output
         im.save(output, format='JPEG', quality=90)
         output.seek(0)
